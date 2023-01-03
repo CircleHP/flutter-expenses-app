@@ -9,20 +9,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('App')),
-      body: Column(
-        children: const [
-          SizedBox(
-            width: double.infinity,
-            child: Card(
-              elevation: 3,
-              child: Padding(
-                padding: EdgeInsets.all(15.0),
-                child: Text('Chart'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            SizedBox(
+              width: double.infinity,
+              child: Card(
+                elevation: 3,
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Text('Chart'),
+                ),
               ),
             ),
-          ),
-          UserTransactions(),
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
