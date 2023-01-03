@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../classes/transaction/transaction.dart';
 
@@ -11,22 +12,48 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
-      child: Container(
-        padding: const EdgeInsets.all(15.0),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.orange,
-            width: 1,
-          ),
-        ),
+      child: SizedBox(
         width: double.infinity,
         child: Row(
           children: [
-            Text(transaction.amount.toString()),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 15,
+              ),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.orange,
+                  width: 1.5,
+                ),
+              ),
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                '\$${transaction.amount}',
+                style: const TextStyle(
+                  fontSize: 20,
+                  color: Colors.orange,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(transaction.title),
-                Text(transaction.date.toString()),
+                Text(
+                  transaction.title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  DateFormat('MMMM yyyy, HH:MM').format(transaction.date),
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                ),
               ],
             ),
           ],
