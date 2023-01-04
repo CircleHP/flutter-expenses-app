@@ -59,7 +59,6 @@ class CreateTransaction extends StatelessWidget {
             onPressed: submitData,
             child: const Text('Add transaction',
                 style: TextStyle(
-                  color: Colors.orange,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 )),

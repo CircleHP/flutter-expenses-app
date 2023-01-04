@@ -23,16 +23,16 @@ class TransactionCard extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.orange,
+                  color: Theme.of(context).primaryColor,
                   width: 1.5,
                 ),
               ),
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 '\$${transaction.amount.toStringAsFixed(2)}',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
-                  color: Colors.orange,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

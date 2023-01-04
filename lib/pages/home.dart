@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App'),
+        title: const Text('Expenses'),
         actions: [
           IconButton(
             onPressed: () => _toggleCreateTransactionModal(context),
