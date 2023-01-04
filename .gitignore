@@ -44,9 +44,6 @@ app.*.map.json
 /android/app/release
 
 # Ignore all systems APK/instalation files from commiting
-/ios/
 /android/
-/macos/
 /linux/
-/web/
 /windows/
