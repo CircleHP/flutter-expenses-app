@@ -7,6 +7,17 @@ class CreateTransaction extends StatelessWidget {
 
   CreateTransaction(this.createTransaction, {super.key});
 
+  void submitData() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.parse(amountController.text);
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+
+    createTransaction(enteredTitle, enteredAmount);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -16,6 +27,8 @@ class CreateTransaction extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10.0),
             child: TextField(
+              controller: titleController,
+              onSubmitted: (_) => submitData(),
               decoration: const InputDecoration(
                 labelText: 'Title',
                 labelStyle: TextStyle(
@@ -23,14 +36,16 @@ class CreateTransaction extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              controller: titleController,
             ),
           ),
           Container(
             padding: const EdgeInsets.all(10.0),
             child: TextField(
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
+              controller: amountController,
+              onSubmitted: (_) => submitData(),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               decoration: const InputDecoration(
                 labelText: 'Amount',
                 labelStyle: TextStyle(
@@ -38,16 +53,10 @@ class CreateTransaction extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              controller: amountController,
             ),
           ),
           TextButton(
-            onPressed: () {
-              createTransaction(
-                titleController.text,
-                double.parse(amountController.text),
-              );
-            },
+            onPressed: submitData,
             child: const Text('Add transaction',
                 style: TextStyle(
                   color: Colors.orange,
