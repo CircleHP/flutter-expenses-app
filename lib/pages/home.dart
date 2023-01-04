@@ -4,6 +4,7 @@ import '../models/transaction/transaction.dart';
 import '../widgets/Transactions/create_transaction.dart';
 import '../widgets/Transactions/transactions_list.dart';
 import '../widgets/Transactions/no_transactions.dart';
+import '../widgets/Chart/chart.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +15,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Transaction> _transactions = [];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions
+        .where(
+          (transaction) => transaction.date.isAfter(
+            DateTime.now().subtract(const Duration(days: 7)),
+          ),
+        )
+        .toList();
+  }
 
   void _addNewTransaction(String title, double amount) {
     final newTransaction = Transaction(
@@ -56,15 +67,9 @@ class _HomePageState extends State<HomePage> {
             ? const NoTransactions()
             : Column(
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     width: double.infinity,
-                    child: Card(
-                      elevation: 3,
-                      child: Padding(
-                        padding: EdgeInsets.all(15.0),
-                        child: Text('Chart'),
-                      ),
-                    ),
+                    child: Chart(_recentTransactions),
                   ),
                   TransactionList(_transactions),
                 ],
