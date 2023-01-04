@@ -25,7 +25,7 @@ class ChartBar extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
-        Container(
+        SizedBox(
           height: 60,
           width: 10,
           child: Stack(
@@ -52,6 +52,7 @@ class ChartBar extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
+        Text(label)
       ],
     );
   }

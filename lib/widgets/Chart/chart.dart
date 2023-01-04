@@ -3,7 +3,6 @@ import 'package:flutter_app_1/widgets/Chart/chart_bar.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/transaction/transaction.dart';
-import '../Chart/chart.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
@@ -29,7 +28,7 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {
