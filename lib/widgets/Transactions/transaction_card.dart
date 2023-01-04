@@ -12,52 +12,25 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
-      child: SizedBox(
-        width: double.infinity,
-        child: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 15,
-              ),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Theme.of(context).primaryColor,
-                  width: 1.5,
-                ),
-              ),
-              padding: const EdgeInsets.all(10.0),
-              child: Text(
-                '\$${transaction.amount.toStringAsFixed(2)}',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  transaction.title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  DateFormat('MMMM yyyy, HH:MM').format(transaction.date),
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-          ],
+      margin: const EdgeInsets.all(8.0),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Theme.of(context).primaryColor,
+          foregroundColor: Colors.black,
+          radius: 30,
+          child: Text(
+            '\$${transaction.amount.toStringAsFixed(2)}',
+            style: const TextStyle(fontSize: 14),
+          ),
         ),
+        title: Text(
+          transaction.title,
+          style: const TextStyle(color: Colors.black),
+        ),
+        subtitle: Text(
+          DateFormat('MMMM yyyy, HH:MM').format(transaction.date),
+        ),
+        trailing: const Icon(Icons.delete),
       ),
     );
   }
