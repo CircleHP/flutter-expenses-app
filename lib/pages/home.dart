@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../models/transaction/transaction.dart';
-import '../widgets/create_transaction.dart';
-import '../widgets/transactions_list.dart';
-import '../widgets/no_transactions.dart';
+import '../widgets/Transactions/create_transaction.dart';
+import '../widgets/Transactions/transactions_list.dart';
+import '../widgets/Transactions/no_transactions.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
