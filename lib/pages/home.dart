@@ -1,9 +1,55 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/user_transactions.dart';
+import '../models/transaction/transaction.dart';
+import '../widgets/create_transaction.dart';
+import '../widgets/transactions_list.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final List<Transaction> _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'New item',
+      amount: 15.0,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'New item #2',
+      amount: 10.0,
+      date: DateTime.now(),
+    )
+  ];
+
+  void _addNewTransaction(String title, double amount) {
+    final newTransaction = Transaction(
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+
+    Navigator.pop(context);
+  }
+
+  void _toggleCreateTransactionModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: ((_) {
+        return CreateTransaction(_addNewTransaction);
+      }),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +58,15 @@ class HomePage extends StatelessWidget {
         title: const Text('App'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => _toggleCreateTransactionModal(context),
             icon: const Icon(Icons.add),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: const [
-            SizedBox(
+          children: [
+            const SizedBox(
               width: double.infinity,
               child: Card(
                 elevation: 3,
@@ -30,13 +76,13 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            UserTransactions(),
+            TransactionList(_transactions),
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _toggleCreateTransactionModal(context),
         child: const Icon(Icons.add),
       ),
     );
