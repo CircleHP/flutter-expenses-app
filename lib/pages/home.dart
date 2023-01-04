@@ -8,7 +8,15 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('App')),
+      appBar: AppBar(
+        title: const Text('App'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: const [
@@ -25,6 +33,11 @@ class HomePage extends StatelessWidget {
             UserTransactions(),
           ],
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
       ),
     );
   }
