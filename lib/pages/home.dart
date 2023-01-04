@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/transaction/transaction.dart';
 import '../widgets/create_transaction.dart';
 import '../widgets/transactions_list.dart';
+import '../widgets/no_transactions.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,20 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Transaction> _transactions = [
-    Transaction(
-      id: 't1',
-      title: 'New item',
-      amount: 15.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'New item #2',
-      amount: 10.0,
-      date: DateTime.now(),
-    )
-  ];
+  final List<Transaction> _transactions = [];
 
   void _addNewTransaction(String title, double amount) {
     final newTransaction = Transaction(
@@ -64,21 +52,23 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              width: double.infinity,
-              child: Card(
-                elevation: 3,
-                child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Text('Chart'),
-                ),
+        child: _transactions.isEmpty
+            ? const NoTransactions()
+            : Column(
+                children: [
+                  const SizedBox(
+                    width: double.infinity,
+                    child: Card(
+                      elevation: 3,
+                      child: Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Text('Chart'),
+                      ),
+                    ),
+                  ),
+                  TransactionList(_transactions),
+                ],
               ),
-            ),
-            TransactionList(_transactions),
-          ],
-        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
