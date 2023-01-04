@@ -5,8 +5,9 @@ import 'transaction_card.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final Function deleteTransaction;
 
-  const TransactionList(this.transactions, {super.key});
+  const TransactionList(this.transactions, this.deleteTransaction, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class TransactionList extends StatelessWidget {
             .map(
               ((transaction) => TransactionCard(
                     transaction: transaction,
+                    deleteTransaction: deleteTransaction,
                   )),
             )
             .toList(),
